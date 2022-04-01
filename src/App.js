@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router";
+import Builder from "./components/builder";
+import Test from "./components/test";
+import { DragDropContext } from "react-beautiful-dnd";
 
-function App() {
+export default function App() {
+  const dragEnd = (result) => {
+    console.log(result);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DragDropContext onDragEnd={dragEnd}>
+      <div>
+        <Routes>
+          <Route path="/" element={<Test />} />
+          <Route path="/builder" element={<Builder />} />
+        </Routes>
+      </div>
+    </DragDropContext>
   );
 }
-
-export default App;
