@@ -1,6 +1,7 @@
 export const list_order = ["course_list", "year_list"];
 
 export const lists = {
+  // available courses
   course_list: {
     id: "course_list",
     name: "Course List",
@@ -19,14 +20,13 @@ export const lists = {
       "course_60",
     ],
   },
+  //   available years
   year_list: {
     id: "year_list",
     name: "Year List",
     year_ids: [2020, 2021, 2022],
   },
-};
-
-export const years = {
+  //   years
   2020: {
     id: "year_2020",
     name: "Year 2020",
@@ -57,9 +57,7 @@ export const years = {
       "2022_spring",
     ],
   },
-};
-
-export const semesters = {
+  //   semesters
   "2020_fall": {
     id: "2020_fall",
     name: "Fall Semester",

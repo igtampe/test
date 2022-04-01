@@ -5,20 +5,13 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AddIcon from "@mui/icons-material/Add";
 import { Stack, IconButton, Button, Icon } from "@mui/material";
-import {
-  list_order,
-  lists,
-  years,
-  semesters,
-  courses,
-} from "../data/dummy_data";
 
-export default function Builder() {
-  const year_ids = lists.year_list.year_ids;
-  const [yearIndex, setYearIndex] = useState(year_ids.length - 1);
+export default function Builder(props) {
+  const years = props.lists["year_list"]["year_ids"];
+  const [yearIndex, setYearIndex] = useState(years.length - 1);
 
   const nextYear = () => {
-    if (yearIndex + 1 < year_ids.length) {
+    if (yearIndex + 1 < years.length) {
       setYearIndex(yearIndex + 1);
     }
   };
@@ -30,7 +23,7 @@ export default function Builder() {
   };
 
   return (
-    <div style={{ margin: 10 }}>
+    <div style={{ margin: 10, minHeight: 1000 }}>
       <Stack
         direction="row"
         justifyContent="center"
@@ -39,22 +32,26 @@ export default function Builder() {
       >
         <List
           key={0}
-          list={lists["course_list"]}
-          courses={lists["course_list"].course_ids.map((id) => courses[id])}
+          list={props.lists["course_list"]}
+          courses={props.lists["course_list"]["course_ids"].map(
+            (id) => props.courses[id]
+          )}
         />
-        <IconButton onClick={() => prevYear()}>
+        <IconButton key={1} onClick={() => prevYear()}>
           <ChevronLeftIcon />
         </IconButton>
-        {/* <Stack> */}
-        {years[year_ids[yearIndex]].semester_ids.map((value, index) => (
-          <List
-            key={index + 1}
-            list={semesters[value]}
-            courses={semesters[value].course_ids.map((id) => courses[id])}
-          />
-        ))}
-        {/* </Stack> */}
-        <IconButton onClick={() => nextYear()}>
+        {props.lists[years[yearIndex]]["semester_ids"].map(
+          (value, index) => (
+            <List
+              key={index + 2}
+              list={props.lists[value]}
+              courses={props.lists[value]["course_ids"].map(
+                (id) => props.courses[id]
+              )}
+            />
+          )
+        )}
+        <IconButton key={years.length + 1} onClick={() => nextYear()}>
           <ChevronRightIcon />
         </IconButton>
       </Stack>

@@ -26,11 +26,10 @@ export default function List(props) {
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {props.courses.map((course, index) => (
-                <Grid item>
+                <Grid item key={index}>
                   <Course id={course.id} name={course.name} index={index} />
                 </Grid>
               ))}
-
               {provided.placeholder}
             </div>
           )}

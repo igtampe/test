@@ -25,7 +25,7 @@ export default function Course(props) {
               alignItems="center"
             >
               <Grid item>
-                [{props.index}] id = {props.id}; name = {props.name}
+                id = {props.id}; name = {props.name}
               </Grid>
             </Grid>
           </Card>
