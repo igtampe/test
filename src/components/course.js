@@ -1,12 +1,5 @@
 import { Draggable } from "react-beautiful-dnd";
-import { Card, Grid } from "@mui/material";
-
-const card_style = {
-  backgroundColor: "#F2EECB",
-  width: 275,
-  margin: 10,
-  padding: 10,
-};
+import CourseCard from "./CourseCard";
 
 export default function Course(props) {
   return (
@@ -17,18 +10,8 @@ export default function Course(props) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <Card style={card_style}>
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Grid item>
-                id = {props.id}; name = {props.name}
-              </Grid>
-            </Grid>
-          </Card>
+          <CourseCard {...props} />
+
         </div>
       )}
     </Draggable>
